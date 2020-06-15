@@ -1,0 +1,29 @@
+class Creator
+  
+  def factory_method
+    raise NotImplementedError, "#{self.class} has not implemented method '#{__method__}'"
+  end
+
+  def some_operation
+    # Вызываем фабричный метод, чтобы получить объект-продукт.
+    product = factory_method
+
+    result = "Creator: The same creator's code has just worked with #{product.operation}"
+
+    result
+  end
+end
+
+class ConcreteCreator1 < Creator
+  
+  def factory_method
+    ConcreteProduct1.new
+  end
+end
+
+class ConcreteCreator2 < Creator
+  # @return [ConcreteProduct2]
+  def factory_method
+    ConcreteProduct2.new
+  end
+end
